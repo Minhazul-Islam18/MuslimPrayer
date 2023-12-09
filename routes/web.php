@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use ipinfo\ipinfolaravel\Facades\ipinfolaravel;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +26,24 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/home', function () {
-    return Inertia::render('Home');
+Route::get('/home', function (Request $request) {
+    // $userIp = $request->ip();
+    $client = new \GuzzleHttp\Client();
+    // // $response = $client->get("https://ipinfo.io/{$userIp}?token=18ae09f550de5c");
+    // // $data = json_decode($response->getBody());
+    // $location_text = "The IP address {$request->ipinfo->ip}.";
+    // // Extract user information
+    // dd($request->ipinfo);
+    $city = $request->ipinfo->city ?? 'dhaka';
+    $response = $client->request('GET', "https://muslimsalat.p.rapidapi.com/{$city}.json", [
+        'headers' => [
+            'X-RapidAPI-Host' => 'muslimsalat.p.rapidapi.com',
+            'X-RapidAPI-Key' => 'd8d03a60camshdded7f107164c76p12316ejsn1085ec72d07c',
+        ],
+    ]);
+
+    // json_decode($response->getBody());
+    return Inertia::render('Home', ['infos' => json_decode($response->getBody())]);
 });
 
 Route::middleware([

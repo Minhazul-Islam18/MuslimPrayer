@@ -1,5 +1,10 @@
 <script setup>
 import ClientLayout from '@/Layouts/ClientLayout.vue';
+
+const infos = defineProps({
+    infos: Array | Object,
+})
+console.log(infos.infos);
 </script>
 
 <template>
@@ -58,15 +63,10 @@ import ClientLayout from '@/Layouts/ClientLayout.vue';
                         </p>
                     </div>
                 </div>
-                <!-- <script type="text/template" id="timer-template"><span class="pt-timer" id="clockdiv"></span></script>
-                <script type="text/template" id="btn-refresh-template">
-                    <a class="btn-refresh" href="./"><img alt="refresh" src="/static/live180/themes/theme20/images/refresh-btn.png"></img></a>
-                </script> -->
 
                 <div class="ptcard-footer">
                     <div class="d-flex pt-more">
                         <div class="pt-info">
-                            <!-- Static CityId for London = 2643743 -->
                             <p class="font-sm font-dark">University Of Islamic Sciences, Karachi &nbsp;<a
                                     class="font-primary font-sm font-weight-bold underline-hover settingsOpener gtm-pt-settings"
                                     title="Click here to change settings">Change</a> </p>
@@ -76,8 +76,6 @@ import ClientLayout from '@/Layouts/ClientLayout.vue';
                                     data-target="#cal-method-info"></span>
                             </p>
                         </div>
-
-
                     </div>
                 </div>
             </div>
