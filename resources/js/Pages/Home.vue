@@ -1,10 +1,13 @@
 <script setup>
 import ClientLayout from '@/Layouts/ClientLayout.vue';
 
-const infos = defineProps({
+const props = defineProps({
     infos: Array | Object,
 })
-console.log(infos.infos);
+
+let infos = Object.entries(props.infos.items[0])
+infos = infos.filter(item => !item.includes("date_for"));
+console.log(infos);
 </script>
 
 <template>
@@ -32,7 +35,13 @@ console.log(infos.infos);
                             <span class="text-center block">05:09 AM</span>
                         </p>
                     </div>
-                    <div class=" rounded-md px-4 py-8 bg-gray-200 w-[15%]">
+                    <div class=" rounded-md px-4 py-8 bg-gray-200 w-[15%]" v-for="(prayer, index) in infos" :key="index">
+                        <p>
+                            <span class="text-md text-center block capitalize">{{ prayer[0] }} </span>
+                            <span class="text-center text-xl block uppercase">{{ prayer[1] }}</span>
+                        </p>
+                    </div>
+                    <!-- <div class=" rounded-md px-4 py-8 bg-gray-200 w-[15%]">
                         <p>
                             <span class="text-md text-center block">Sunrise </span>
                             <span class="text-center text-xl block">06:28 AM</span>
@@ -55,19 +64,13 @@ console.log(infos.infos);
                             <span class="text-md text-center block">Sunrise </span>
                             <span class="text-center text-xl block">06:28 AM</span>
                         </p>
-                    </div>
-                    <div class=" rounded-md px-4 py-8 bg-gray-200 w-[15%]">
-                        <p>
-                            <span class="text-md text-center block">Sunrise </span>
-                            <span class="text-center text-xl block">06:28 AM</span>
-                        </p>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="ptcard-footer">
                     <div class="d-flex pt-more">
                         <div class="pt-info">
-                            <p class="font-sm font-dark">University Of Islamic Sciences, Karachi &nbsp;<a
+                            <p class="font-sm font-dark">{{ props.infos.prayer_method_name }} &nbsp;<a
                                     class="font-primary font-sm font-weight-bold underline-hover settingsOpener gtm-pt-settings"
                                     title="Click here to change settings">Change</a> </p>
                             <p class="font-xs font-muted">
@@ -76,6 +79,8 @@ console.log(infos.infos);
                                     data-target="#cal-method-info"></span>
                             </p>
                         </div>
+                        <span class="text-xl font-bold">Air pressure: {{ props.infos.today_weather.pressure }}</span>
+                        <span class="text-xl font-bold">Temp: {{ props.infos.today_weather.temperature }}</span>
                     </div>
                 </div>
             </div>
