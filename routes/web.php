@@ -42,7 +42,6 @@ Route::get('/home', function (Request $request) {
         ],
     ]);
 
-    // json_decode($response->getBody());
     return Inertia::render('Home', ['infos' => json_decode($response->getBody())]);
 });
 

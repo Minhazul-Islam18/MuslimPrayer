@@ -3,7 +3,7 @@ console.log('ok');
 </script>
 <template>
     <header class=" pt-4 pb-3 border-b">
-        <h1 class=" text-center">Layout</h1>
+        <h1 class=" text-center">Header</h1>
     </header>
     <div class="container mx-auto">
         <slot />
