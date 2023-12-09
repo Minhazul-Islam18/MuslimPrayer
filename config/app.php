@@ -187,4 +187,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'rapidapi-key' => env('RAPIDAPI_KEY')
 ];

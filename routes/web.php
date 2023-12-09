@@ -38,7 +38,7 @@ Route::get('/home', function (Request $request) {
     $response = $client->request('GET', "https://muslimsalat.p.rapidapi.com/{$city}.json", [
         'headers' => [
             'X-RapidAPI-Host' => 'muslimsalat.p.rapidapi.com',
-            'X-RapidAPI-Key' => 'd8d03a60camshdded7f107164c76p12316ejsn1085ec72d07c',
+            'X-RapidAPI-Key' => config('app.rapidapi-key'),
         ],
     ]);
 
