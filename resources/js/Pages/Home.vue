@@ -70,11 +70,11 @@ console.log(today_arabic);
 </script>
 <style scoped>
 .countdown {
-    font-size: 14px;
-    /* Adjust the font size of the countdown as needed */
+    font-size: 32px;
     display: block;
     margin-top: 8px;
-    /* Adjust the margin as needed */
+    text-align: center;
+    font-weight: 900;
 }
 </style>
 <template>
@@ -83,15 +83,20 @@ console.log(today_arabic);
             <div class=" bg-white rounded-lg px-7 py-4" id="prayertimes-card">
                 <div class="pt-card-header flex flex-col sm:flex-row flex-wrap justify-between">
                     <div class="d-flex flex-column">
-                        <h1 class="boxCard-title mb-1 font-extrabold text-3xl pb-1 border-b">
-                            Prayer Times {{ props.infos.city }}</h1>
+                        <h1 class="flex gap-2 mb-1 font-extrabold text-3xl pb-1 border-b">
+                            Prayer Times
+                            <span
+                                class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
+                                <span class="relative text-white">{{ props.infos.city }}</span>
+                            </span>
+                        </h1>
                     </div>
                     <div class="pt-date font-dark font-sm">
                         <p class=" font-bold text-end">{{ new Date().toLocaleString() }}</p>
-                        <p class=" font-bold text-end">{{ today_arabic }}</p>
+                        <p class=" font-bold text-end">{{ today_arabic + ' Hijri' }}</p>
                         <div class="mt-6">
                             <div class="flex flex-col sm:flex-row sm:justify-between">
-                                <span class="text-xl font-bold flex flex-col gap-1">
+                                <span class="text-xl font-bold flex flex-col gap-1 items-center">
                                     <svg fill="#000000" width="50px" height="50px" viewBox="0 0 64 64" version="1.1"
                                         xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -174,7 +179,7 @@ console.log(today_arabic);
                                         </g>
                                     </svg>
                                     {{ props.infos.today_weather.pressure }}</span>
-                                <span class="text-xl font-bold flex flex-col gap-1">
+                                <span class="text-xl font-bold flex flex-col gap-1 items-center">
                                     <svg fill="#000000" width="50px" height="50px" viewBox="0 0 32.00 32.00" version="1.1"
                                         xmlns="http://www.w3.org/2000/svg" stroke="#000000" stroke-width="0.00032">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -203,7 +208,9 @@ console.log(today_arabic);
                     <div class=" rounded-md px-4 py-8 bg-sky-200/20 shadow-md w-[15%]" v-for="(prayer, index) in  infos "
                         :key="index"
                         :class="{ 'rounded-md px-4 py-8 w-[15%]': true, 'rounded-md px-12 py-8 bg-[url(`${bg_image}`)] bg-cover bg-no-repeat bg-center w-[20%] text-white': isUpcomingPrayer(index) }"
-                        :style="{ 'background-image': isUpcomingPrayer(index) ? `url(${bg_image})` : 'none' }">
+                        :style="{ 'background-image': isUpcomingPrayer(index) ? `url(https://www.islamicfinder.org/static/live180/themes/theme20/images/${prayer[0]}.png)` : 'none' }">
+                        <span v-if="isUpcomingPrayer(index)" class="block text-xl text-center">{{ 'Upcoming prayer'
+                        }}</span>
                         <p>
                             <span class="text-md text-center block capitalize">{{ prayer[0] }} </span>
                             <span class="text-center text-xl block uppercase">{{ prayer[1] }}</span>

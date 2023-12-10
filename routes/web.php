@@ -27,13 +27,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function (Request $request) {
-    // $userIp = $request->ip();
     $client = new \GuzzleHttp\Client();
-    // // $response = $client->get("https://ipinfo.io/{$userIp}?token=18ae09f550de5c");
-    // // $data = json_decode($response->getBody());
-    // $location_text = "The IP address {$request->ipinfo->ip}.";
-    // // Extract user information
-    // dd($request->ipinfo);
     $city = $request->ipinfo->city ?? 'dhaka';
     $response = $client->request('GET', "https://muslimsalat.p.rapidapi.com/{$city}.json", [
         'headers' => [
