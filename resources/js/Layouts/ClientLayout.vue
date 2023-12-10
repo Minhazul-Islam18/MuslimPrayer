@@ -1,5 +1,4 @@
 <script setup>
-console.log('ok');
 </script>
 <template>
     <header class=" pt-4 pb-3 border-b">

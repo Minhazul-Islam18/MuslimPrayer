@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watchEffect } from 'vue';
+import { Head } from '@inertiajs/vue3';
 import ClientLayout from '@/Layouts/ClientLayout.vue';
-// import uq from '@umalqura/core';
 
 const props = defineProps({
     infos: Array | Object,
@@ -10,8 +10,6 @@ const props = defineProps({
 let infos = Object.entries(props.infos.items[0])
 const today = props.infos.items[0].date_for
 infos = infos.filter(item => !item.includes("date_for"));
-const bg_image = 'https://www.islamicfinder.org/static/live180/themes/theme20/images/fajr.png'
-
 
 
 
@@ -78,6 +76,9 @@ console.log(today_arabic);
 }
 </style>
 <template>
+    <Head>
+        <title>Muslim prayer app - Prayer time based on your location.</title>
+    </Head>
     <ClientLayout>
         <div class="py-12">
             <div class=" bg-white rounded-lg px-7 py-4" id="prayertimes-card">
